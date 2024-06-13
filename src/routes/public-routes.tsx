@@ -1,3 +1,4 @@
+import Wrapper from "@/components/custom/common/Wrapper";
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -8,7 +9,11 @@ const Authentication = lazy(
 const publicRoutes = [
   {
     path: "/auth",
-    element: <Authentication />,
+    element: (
+      <Wrapper>
+        <Authentication />
+      </Wrapper>
+    ),
   },
   {
     path: "*",

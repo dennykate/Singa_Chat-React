@@ -12,8 +12,10 @@
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@react-oauth/google": "^0.12.1",
+    "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.394.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,7 +26,8 @@
     "react-toastify": "^10.0.5",
     "rehype-raw": "^7.0.0",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-encrypt-storage": "^0.0.32"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

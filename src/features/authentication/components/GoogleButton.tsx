@@ -1,9 +1,23 @@
 import { useGoogleLogin } from "@react-oauth/google";
+import { useEncryptStorage } from "use-encrypt-storage";
+
+import googleAuth from "../services/google-auth";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const GoogleButton = () => {
+  const navigate = useNavigate();
+  const { set } = useEncryptStorage();
+
   const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log("token response => ", tokenResponse);
+    onSuccess: async (tokenResponse) => {
+      const res = await googleAuth(tokenResponse.access_token);
+
+      set("access_token", res?.data?.access_token);
+      set("refresh_token", res?.data?.refresh_token);
+
+      toast.success("Login Success");
+      navigate("/chat");
     },
   });
 

@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { EncryptProvider } from "use-encrypt-storage";
 
 interface PropsType {
   children: React.ReactNode;
@@ -12,10 +13,12 @@ interface PropsType {
 const AppProvider: React.FC<PropsType> = ({ children }) => {
   return (
     <BrowserRouter>
-      <GoogleOAuthProvider clientId={config.GOOGLE_OAUTH_CLIENT_ID}>
-        {children}
-        <ToastContainer theme="light" />
-      </GoogleOAuthProvider>
+      <EncryptProvider secretKey={config.encryptStorageSecretKey}>
+        <GoogleOAuthProvider clientId={config.googleClientID}>
+          {children}
+          <ToastContainer theme="light" />
+        </GoogleOAuthProvider>
+      </EncryptProvider>
     </BrowserRouter>
   );
 };
