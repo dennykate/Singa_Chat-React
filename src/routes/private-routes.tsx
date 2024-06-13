@@ -1,16 +1,16 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
-const Authentication = lazy(() => import("@/features/authentication/Authentication"));
+const Chat = lazy(() => import("@/features/chat/Chat"));
 
 const publicRoutes = [
   {
-    path: "/auth",
-    element: <Authentication />,
+    path: "/chat",
+    element: <Chat />,
   },
   {
     path: "*",
-    element: <Navigate to={"/auth"} />,
+    element: <Navigate to={"/chat"} />,
   },
 ];
 

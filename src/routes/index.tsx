@@ -4,7 +4,7 @@ import privateRoutes from "./private-routes";
 import publicRoutes from "./public-routes";
 
 const Routes = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   const routes = isAuthenticated ? privateRoutes : publicRoutes;
 

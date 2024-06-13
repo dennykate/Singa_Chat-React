@@ -1,8 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-a,
-p {
-  @apply text-gray-700;
+* {
+  @apply font-poppins;
+}
+
+/* markdown css */
+
+/* App.css */
+.markdown-body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body p {
+  margin-bottom: 1em;
+}
+
+.markdown-body ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.markdown-body a {
+  color: blue;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
 }
