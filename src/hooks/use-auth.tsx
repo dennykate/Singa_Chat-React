@@ -8,7 +8,7 @@ interface DecodedToken {
 
 const useAuth = () => {
   const { get } = useEncryptStorage();
-  const accessToken = get("access_token");
+  const accessToken = get("accessToken");
 
   if (!accessToken) {
     return false; // Handle the case where the access token is not available

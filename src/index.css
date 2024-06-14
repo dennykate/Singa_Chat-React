@@ -8,22 +8,31 @@
   @apply font-poppins;
 }
 
-/* markdown css */
+/* button {
+  position: relative;
+} */
 
-/* App.css */
+.reaction-wrapper {
+  position: relative;
+  margin-left: -6px; /* Adjust this value to control the overlap */
+}
+
+.reaction-wrapper:first-child {
+  margin-left: 0; /* No margin for the first item */
+}
+
+/* markdown css */
 .markdown-body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  padding: 20px;
 }
 
 .markdown-body h1 {
   font-size: 2em;
-  margin-bottom: 0.5em;
 }
 
 .markdown-body p {
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
 }
 
 .markdown-body ul {

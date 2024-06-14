@@ -18,27 +18,22 @@ import {
 
 import ChatActionButton from "./ChatActionButton";
 import unsupportedAction from "@/utilities/unsupported-action";
+import Avatar from "@/components/custom/common/Avatar";
 
 const ChatRoomHeader = () => {
   return (
     <div className="w-full px-4 pt-2 ">
       <div className="w-full bg-white px-4 flex justify-between items-center h-[72px] rounded-full shadow-lg ">
         <div className="flex items-center gap-2">
-          <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-            <img
-              src="/assets/images/logos/logo-square.webp"
-              alt="logo"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Avatar
+            src="/assets/images/logos/logo-square.webp"
+            alt="logo"
+            className="w-[50px] h-[50px] "
+          />
 
           <div className="flex flex-col items-start ">
-            <h6 className="text-base">Denny Kate</h6>
-            {/* <p className="text-xs text-gray-500">Denny Kate is typing ...</p> */}
-            <div className="flex items-center gap-1">
-              <div className="w-[6px] h-[6px] bg-green-500 rounded-full" />
-              <span className="text-xs text-gray-500">Active</span>
-            </div>
+            <p className="text-base">Denny Kate</p>
+            <p className="text-xs text-gray-500">dennykate22@gmail.com</p>
           </div>
         </div>
 
@@ -66,7 +61,7 @@ const ChatRoomHeader = () => {
               <DropdownMenuItem>
                 <button
                   onClick={unsupportedAction}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-3 px-2"
                 >
                   <FiAlertTriangle size={16} />
                   <span>Report</span>
@@ -75,7 +70,7 @@ const ChatRoomHeader = () => {
               <DropdownMenuItem>
                 <button
                   onClick={unsupportedAction}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-3 px-2"
                 >
                   <MdHideSource size={16} />
                   <span>Restrict</span>
@@ -84,7 +79,7 @@ const ChatRoomHeader = () => {
               <DropdownMenuItem>
                 <button
                   onClick={unsupportedAction}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-3 px-2"
                 >
                   <GoBlocked size={16} />
                   <span>Block</span>

@@ -13,11 +13,14 @@ const GoogleButton = () => {
     onSuccess: async (tokenResponse) => {
       const res = await googleAuth(tokenResponse.access_token);
 
-      set("access_token", res?.data?.access_token);
-      set("refresh_token", res?.data?.refresh_token);
+      if (res) {
+        set("accessToken", res?.data?.access_token);
+        set("refreshToken", res?.data?.refresh_token);
 
-      toast.success("Login Success");
-      navigate("/chat");
+        toast.success("Login Success");
+
+        navigate("/chat");
+      }
     },
   });
 

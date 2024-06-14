@@ -1,5 +1,6 @@
 import config from "@/config/config";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const googleAuth = async (accessToken: string) => {
   try {
@@ -9,7 +10,7 @@ const googleAuth = async (accessToken: string) => {
 
     return res.data;
   } catch (error) {
-    console.log("error => ", error);
+    toast.error("Something went wrong");
   }
 };
 

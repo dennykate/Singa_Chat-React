@@ -1,4 +1,4 @@
-import Message from "./Message";
+import MessageCard from "./reactions/MessageCard";
 
 const ChatMessages = () => {
   return (
@@ -7,26 +7,26 @@ const ChatMessages = () => {
         className="w-full h-full overflow-y-auto flex flex-col-reverse justify-start gap-4 px-2 
         scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent py-4"
       >
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
+        <MessageCard />
       </div>
     </div>
   );
