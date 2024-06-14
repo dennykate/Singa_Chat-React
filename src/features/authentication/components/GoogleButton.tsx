@@ -1,12 +1,14 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { useEncryptStorage } from "use-encrypt-storage";
 
-import googleAuth from "../services/google-auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import googleAuth from "../services/google-auth";
+import useNewUser from "../services/use-new-user";
 
 const GoogleButton = () => {
   const navigate = useNavigate();
+  const newUser = useNewUser();
   const { set } = useEncryptStorage();
 
   const login = useGoogleLogin({
@@ -16,6 +18,11 @@ const GoogleButton = () => {
       if (res) {
         set("accessToken", res?.data?.access_token);
         set("refreshToken", res?.data?.refresh_token);
+        set("profile", JSON.stringify(res?.data?.user));
+
+        if (res?.data?.is_new) {
+          newUser(res?.data?.access_token);
+        }
 
         toast.success("Login Success");
 
@@ -26,7 +33,9 @@ const GoogleButton = () => {
 
   return (
     <button
-      onClick={() => login()}
+      onClick={() => {
+        login();
+      }}
       className="lg:w-full xs:w-[300px] w-[260px] px-4 py-2.5 border border-black border-opacity-40 flex items-center
      justify-start sm:gap-4 gap-2 hover:ring-black hover:ring-1"
     >

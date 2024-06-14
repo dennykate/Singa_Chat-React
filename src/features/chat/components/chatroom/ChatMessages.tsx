@@ -1,4 +1,4 @@
-import MessageCard from "./reactions/MessageCard";
+import MessageCard from "./MessageCard";
 
 const ChatMessages = () => {
   return (

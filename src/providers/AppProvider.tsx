@@ -1,5 +1,7 @@
-import config from "@/config/config";
+import config from "@/lib/config/config";
+import store from "@/lib/redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -13,12 +15,14 @@ interface PropsType {
 const AppProvider: React.FC<PropsType> = ({ children }) => {
   return (
     <BrowserRouter>
-      <EncryptProvider secretKey={config.encryptStorageSecretKey}>
-        <GoogleOAuthProvider clientId={config.googleClientID}>
-          {children}
-          <ToastContainer theme="light" />
-        </GoogleOAuthProvider>
-      </EncryptProvider>
+      <Provider store={store}>
+        <EncryptProvider secretKey={config.encryptStorageSecretKey}>
+          <GoogleOAuthProvider clientId={config.googleClientID}>
+            {children}
+            <ToastContainer theme="light" />
+          </GoogleOAuthProvider>
+        </EncryptProvider>
+      </Provider>
     </BrowserRouter>
   );
 };

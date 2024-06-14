@@ -1,14 +1,35 @@
-import React from "react";
+import { useEffect } from "react";
 import FriendCard from "./FriendCard";
 
+import getUsers from "../../services/get-users";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import { setUser } from "@/lib/redux/services/userSlice";
+import { UserType } from "@/types/type";
+
 const Friends = () => {
+  const dispatch = useDispatch();
+  const { users } = useSelector((state: RootState) => state.users);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const res = await getUsers();
+
+      if (res.success) {
+        dispatch(setUser(res?.data));
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  console.log("users => ", users);
+
   return (
     <div className="w-full h-[calc(100%-160px)] flex flex-col gap-[2px]">
-      <FriendCard />
-      <FriendCard />
-      <FriendCard />
-      <FriendCard />
-      <FriendCard />
+      {users?.map((user: UserType) => (
+        <FriendCard user={user} />
+      ))}
     </div>
   );
 };
