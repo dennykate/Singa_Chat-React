@@ -5,14 +5,19 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import googleAuth from "../services/google-auth";
 import useNewUser from "../services/use-new-user";
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 const GoogleButton = () => {
   const navigate = useNavigate();
   const newUser = useNewUser();
   const { set } = useEncryptStorage();
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
+      setIsLoading(true);
       const res = await googleAuth(tokenResponse.access_token);
 
       if (res) {
@@ -28,16 +33,20 @@ const GoogleButton = () => {
 
         navigate("/chat");
       }
+
+      setIsLoading(false);
     },
   });
 
   return (
     <button
+      disabled={isLoading}
       onClick={() => {
         login();
       }}
-      className="lg:w-full xs:w-[300px] w-[260px] px-4 py-2.5 border border-black border-opacity-40 flex items-center
-     justify-start sm:gap-4 gap-2 hover:ring-black hover:ring-1"
+      className={twMerge("lg:w-full xs:w-[300px] w-[260px] px-4 py-2.5 border border-black border-opacity-40 flex items-center justify-start sm:gap-4 gap-2 ",
+        isLoading ? "opacity-70" : "hover:ring-black hover:ring-1 opacity-100"
+      )}
     >
       <img
         src="/assets/images/logos/google-logo.svg"

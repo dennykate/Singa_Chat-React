@@ -5,6 +5,7 @@ import { useEncryptStorage } from "use-encrypt-storage";
 
 import Avatar from "@/components/custom/common/Avatar";
 import useProfile from "@/hooks/use-profile";
+import alertActions from "@/utilities/alert-actions";
 
 const SidebarFooter = () => {
   const navigate = useNavigate();
@@ -20,7 +21,14 @@ const SidebarFooter = () => {
 
   return (
     <button
-      onClick={onLogoutHandler}
+      onClick={() =>
+        alertActions({
+          title: "Are you sure to logout ?",
+          description:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum illo tempore amet at laudantium possimus distinctio ea incidunt iure. Autem blanditiis cupiditate ratione libero. Amet minima quia inventore debitis quaerat!",
+          callback: () => onLogoutHandler(),
+        })
+      }
       className="w-full h-[80px] border-t border-black border-opacity-10 flex items-center justify-between px-4
      hover:bg-primary-100/50 overflow-hidden"
     >
