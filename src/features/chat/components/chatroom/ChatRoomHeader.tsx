@@ -22,8 +22,8 @@ import Avatar from "@/components/custom/common/Avatar";
 
 const ChatRoomHeader = () => {
   return (
-    <div className="w-full px-4 pt-2 ">
-      <div className="w-full bg-white px-4 flex justify-between items-center h-[72px] rounded-full shadow-lg ">
+    <div className="w-full px-4 pt-4 ">
+      <div className="w-full bg-white px-4 flex justify-between items-center h-[60px] rounded-full shadow-lg ">
         <div className="flex items-center gap-2">
           <Avatar
             src="/assets/images/logos/logo-square.webp"
@@ -39,20 +39,19 @@ const ChatRoomHeader = () => {
 
         <div className="flex items-center gap-2">
           <ChatActionButton onClick={unsupportedAction}>
-            <PiPhoneFill size={22} />
+            <PiPhoneFill size={20} />
             <span className=" sr-only">Phone Call</span>
           </ChatActionButton>
 
           <ChatActionButton onClick={unsupportedAction}>
-            <PiVideoCameraFill size={22} />
+            <PiVideoCameraFill size={20} />
             <span className=" sr-only">Video Call</span>
           </ChatActionButton>
 
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <div className="relative w-[50px] h-[50px] hover:bg-primary-100/50 flex justify-center items-center rounded-full">
-                <PiWarningCircleFill size={22} />
-                <span className=" sr-only">Video Call</span>
+              <div className=" w-[40px] h-[40px] hover:bg-primary-100/50 flex justify-center items-center rounded-full">
+                <PiWarningCircleFill size={20} />
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

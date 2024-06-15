@@ -10,8 +10,10 @@ const SidebarHeader = () => {
       </div>
 
       <div className="flex flex-col ">
-        <h1 className="uppercase font-bold text-xl">Singa Chat</h1>
-        <p className="text-sm">Connect. Chat. Thrive</p>
+        <h1 className="uppercase font-bold text-xl ">
+          <span className="text-primary">Singa</span> Chat
+        </h1>
+        <p className="text-sm text-gray-700">Connect. Chat. Thrive</p>
       </div>
     </div>
   );

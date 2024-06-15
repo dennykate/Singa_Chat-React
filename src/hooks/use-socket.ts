@@ -29,6 +29,7 @@ const useSocket = (): Socket | undefined => {
     return () => {
       console.log("Disconnecting from socket server");
       newSocket.disconnect();
+      setSocket(newSocket);
     };
   }, []);
 

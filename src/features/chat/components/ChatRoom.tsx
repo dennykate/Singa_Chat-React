@@ -1,3 +1,4 @@
+import ChatInput from "./chatroom/ChatInput";
 import ChatMessages from "./chatroom/ChatMessages";
 import ChatRoomHeader from "./chatroom/ChatRoomHeader";
 
@@ -8,6 +9,7 @@ const ChatRoom = () => {
 
       <div className="max-w-[900px] mx-auto h-[calc(100%-80px)]">
         <ChatMessages />
+        <ChatInput />
       </div>
     </div>
   );
