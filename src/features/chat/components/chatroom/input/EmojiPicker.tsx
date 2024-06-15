@@ -1,34 +1,29 @@
-import { useState } from "react";
 import { SlEmotsmile } from "react-icons/sl";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { PopoverContent } from "@radix-ui/react-popover";
 
 interface PropsType {
   setContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const EmojiPickerComponent: React.FC<PropsType> = ({ setContent }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const onEmojiClick = (emojiData: EmojiClickData) => {
     setContent((prev) => prev + emojiData.emoji);
     // setIsOpen(false);
   };
 
   return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="relative translate-y-1"
-      >
+    <Popover>
+      <PopoverTrigger>
         <SlEmotsmile size={20} />
-        <span className="sr-only">Emoji</span>
-      </button>
-      {isOpen && (
-        <div className="absolute bottom-[50px] right-0 mt-2 z-10">
+      </PopoverTrigger>
+      <PopoverContent side="top" className="!w-auto !p-0 !z-10">
+        <div className=" -translate-y-4 sm:translate-x-[-42%] -translate-x-2 z-10">
           <EmojiPicker onEmojiClick={onEmojiClick} />
         </div>
-      )}
-    </div>
+      </PopoverContent>
+    </Popover>
   );
 };
 

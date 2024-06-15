@@ -1,7 +1,5 @@
-import MarkdownRenderer from "@/components/custom/common/MarkdownRenderer";
 import { twMerge } from "tailwind-merge";
 import MessageReactions from "./reactions/MessageReactions";
-import Avatar from "@/components/custom/common/Avatar";
 
 import React, { useState } from "react";
 import {
@@ -10,6 +8,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import MessageActions from "./message/MessageActions";
+import Avatar from "@/components/custom/common/Avatar";
+import MarkdownRenderer from "@/components/custom/common/MarkdownRenderer";
 
 const isSender = true;
 const markdownText = `Ma Ma Ko Chit Tel
@@ -34,7 +34,7 @@ const MessageCard = () => {
           <div
             onDoubleClick={() => setOpenActions(true)}
             className={twMerge(
-              "px-4 pt-4 pb-2 shadow-md rounded-md max-w-[500px] min-w-[350px]",
+              "px-4 pt-4 pb-2 shadow-md rounded-md max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] min-w-[100px]",
               isSender ? "bg-white" : "bg-gray-100"
             )}
           >

@@ -6,9 +6,9 @@ interface PropsType {
 
 const PreviewMessage: React.FC<PropsType> = ({ content }) => {
   return (
-    <div className="absolute bottom-[90px] max-h-[50vh] overflow-y-auto left-0 min-w-[300px] max-w-[400px] p-4 bg-white rounded-md shadow-md overflow-hidden">
-      <p className="text-sm text-gray-500 mb-4">Your Preview Message</p>
-      
+    <div className="absolute sm:bottom-[80px] bottom-[65px] md:bottom-[90px] max-h-[50vh] overflow-y-auto left-0 min-w-[250px] xs:min-w-[300px] max-w-[400px] p-4 bg-white rounded-md shadow-md overflow-hidden">
+      <p className="text-sm text-gray-500 mb-4">Preview Message</p>
+
       <MarkdownRenderer content={content} className="text-sm" />
     </div>
   );

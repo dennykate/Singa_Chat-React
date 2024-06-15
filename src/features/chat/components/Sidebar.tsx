@@ -2,11 +2,17 @@ import Friends from "./sidebar/Friends";
 import SidebarFooter from "./sidebar/SidebarFooter";
 import SidebarHeader from "./sidebar/SidebarHeader";
 
-const Sidebar = () => {
+interface PropsType {
+  setShowFriends: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Sidebar: React.FC<PropsType> = ({ setShowFriends }) => {
   return (
-    <div className="w-[300px] h-full border-r border-black border-opacity-10">
-      <SidebarHeader />
+    <div className="w-full h-full border-r border-black border-opacity-10 bg-white">
+      <SidebarHeader onClose={() => setShowFriends(false)} />
+
       <Friends />
+
       <SidebarFooter />
     </div>
   );

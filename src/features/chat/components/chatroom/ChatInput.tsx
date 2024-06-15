@@ -21,14 +21,13 @@ const ChatInput = () => {
   return (
     <div
       className={twMerge(
-        "w-full pb-2 flex items-end gap-4 relative",
-        isStartTyping ? "h-[80px]" : "h-[80px] "
+        "w-full md:pb-2 flex items-end sm:gap-4 gap-2 relative sm:h-[80px] h-[70px]"
       )}
     >
       <div
         className={twMerge(
           "w-[calc(100%-60px)] rounded-lg flex items-end  bg-white shadow-lg transition-all duration-300 ease-in-out",
-          isStartTyping ? "h-[70px]" : " h-[56px]"
+          isStartTyping ? "sm:h-[70px] h-[56px]" : " h-[56px]"
         )}
       >
         <textarea
@@ -44,15 +43,18 @@ const ChatInput = () => {
         ></textarea>
 
         <div className="flex justify-center p-4 gap-4">
+          {/* Attcahment Button  */}
           <button className="relative" onClick={unsupportedAction}>
             <ImAttachment size={20} />
             <span className="sr-only">Attachment</span>
           </button>
 
+          {/* Emoji Button  */}
           <EmojiPicker setContent={setContent} />
         </div>
       </div>
 
+      {/* Send Button  */}
       <button
         className="w-[50px] h-[50px] relative flex justify-center items-center rounded-full
        bg-primary-200 hover:bg-opacity-50"
@@ -61,6 +63,7 @@ const ChatInput = () => {
         <span className="sr-only">Send</span>
       </button>
 
+      {/* Preview Message  */}
       {showPreview && content?.length > 0 && (
         <PreviewMessage content={content} />
       )}
