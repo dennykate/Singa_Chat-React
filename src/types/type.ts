@@ -18,11 +18,12 @@ interface IReaction {
 // Define the Message interface
 export type MessageType = {
   _id: string;
-  sender: string;
-  recipient: string;
+  sender: UserType;
+  recipient: UserType;
   content: string;
   reactions: IReaction[];
   isRead: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
+  isSender: boolean;
 };

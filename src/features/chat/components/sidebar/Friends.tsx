@@ -15,20 +15,18 @@ const Friends = () => {
     const fetchUsers = async () => {
       const res = await getUsers();
 
-      if (res.success) {
+      if (res?.success) {
         dispatch(setUser(res?.data));
       }
     };
 
     fetchUsers();
-  }, []);
-
-  console.log("users => ", users);
+  }, [dispatch]);
 
   return (
     <div className="w-full h-[calc(100%-160px)] flex flex-col gap-[2px]">
       {users?.map((user: UserType) => (
-        <FriendCard user={user} />
+        <FriendCard key={user?._id} user={user} />
       ))}
     </div>
   );

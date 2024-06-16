@@ -33,6 +33,7 @@
 
 .markdown-body p {
   /* margin-bottom: 1em; */
+  white-space: pre-line;
 }
 
 .markdown-body ul {

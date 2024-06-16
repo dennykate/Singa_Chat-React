@@ -20,11 +20,23 @@ export const userSlice = createSlice({
       state.users = payload;
     },
     setNewUser: (state, { payload }) => {
-      state.users = [payload,...state.users];
+      state.users = [payload, ...state.users];
+    },
+    updateLastMessage: (state, { payload }) => {
+      state.users = state.users?.map((user) => {
+        if (
+          payload?.sender?._id == user?._id ||
+          payload?.recipient?._id == user?._id
+        ) {
+          user.lastMessage = payload?.content;
+        }
+
+        return user;
+      });
     },
   },
 });
 
-export const { setUser, setNewUser } = userSlice.actions;
+export const { setUser, setNewUser, updateLastMessage } = userSlice.actions;
 
 export default userSlice.reducer;

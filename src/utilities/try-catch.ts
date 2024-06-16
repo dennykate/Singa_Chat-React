@@ -11,6 +11,7 @@ const tryCatch = <T extends AsyncFunction>(fn: T): T => {
       return await fn(...args);
     } catch (error) {
       toast.error("Something went wrong");
+      throw error;
     }
   } as T;
 };

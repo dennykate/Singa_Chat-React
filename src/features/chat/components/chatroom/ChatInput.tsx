@@ -5,8 +5,17 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import EmojiPicker from "./input/EmojiPicker";
 import PreviewMessage from "./input/PreviewMessage";
+import useProfile from "@/hooks/use-profile";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import useMessages from "../../services/use-messages";
 
 const ChatInput = () => {
+  const profile = useProfile();
+  const { chatUser } = useSelector((state: RootState) => state.chat);
+
+  const { onSendMessage } = useMessages();
+
   const [content, setContent] = useState<string>("");
   const [isStartTyping, setIsStartTyping] = useState<boolean>(false);
   const [showPreview, setShowPreview] = useState<boolean>(false);
@@ -16,6 +25,28 @@ const ChatInput = () => {
     else setIsStartTyping(false);
 
     setContent(e.target.value);
+  };
+
+  const onSubmitHandler = () => {
+    const data = {
+      sender: profile?._id as string,
+      recipient: chatUser?._id as string,
+      content,
+    };
+
+    onSendMessage(data);
+
+    setContent("");
+  };
+
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && e.ctrlKey) {
+      e.preventDefault();
+      setContent((prev) => prev + "\n "); // Append a newline character
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      onSubmitHandler(); // Handle the submit action
+    }
   };
 
   return (
@@ -33,9 +64,9 @@ const ChatInput = () => {
         <textarea
           name="Chat Input"
           id="chat-input"
-          defaultValue={content}
           value={content}
           onChange={onChangeHandler}
+          onKeyDown={onKeyDownHandler}
           onFocus={() => setShowPreview(true)}
           onBlur={() => setShowPreview(false)}
           placeholder="Type here ..."
@@ -58,6 +89,7 @@ const ChatInput = () => {
       <button
         className="w-[50px] h-[50px] relative flex justify-center items-center rounded-full
        bg-primary-200 hover:bg-opacity-50"
+        onClick={onSubmitHandler}
       >
         <IoSend size={20} className="text-black" />
         <span className="sr-only">Send</span>

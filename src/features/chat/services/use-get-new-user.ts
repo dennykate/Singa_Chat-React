@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 const useGetNewUser = () => {
   const dispatch = useDispatch();
+  
   const socket = useSocket();
 
   useEffect(() => {

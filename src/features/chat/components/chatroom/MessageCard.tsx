@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import MessageReactions from "./reactions/MessageReactions";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -10,13 +10,17 @@ import {
 import MessageActions from "./message/MessageActions";
 import Avatar from "@/components/custom/common/Avatar";
 import MarkdownRenderer from "@/components/custom/common/MarkdownRenderer";
+import { MessageType } from "@/types/type";
+import formatDate from "@/utilities/format-date";
 
-const isSender = true;
-const markdownText = `Ma Ma Ko Chit Tel
-`;
+interface PropsType {
+  data: MessageType;
+}
 
-const MessageCard = () => {
+const MessageCard: React.FC<PropsType> = ({ data }) => {
   const [openActions, setOpenActions] = useState<boolean>(false);
+
+  const isSender = useMemo(() => data?.isSender, [data]);
 
   return (
     <div
@@ -26,7 +30,7 @@ const MessageCard = () => {
       )}
     >
       {!isSender && (
-        <Avatar src="/assets/images/logos/logo-square.webp" alt="logo" />
+        <Avatar src={data?.sender?.profile} alt={data?.sender?.username} />
       )}
 
       <Popover open={openActions} onOpenChange={() => setOpenActions(false)}>
@@ -39,7 +43,7 @@ const MessageCard = () => {
             )}
           >
             {/* Message Content  */}
-            <MarkdownRenderer content={markdownText} />
+            <MarkdownRenderer content={data?.content} />
 
             {/* Message Footer  */}
             <div
@@ -49,9 +53,13 @@ const MessageCard = () => {
               )}
             >
               <div className="flex items-center gap-2">
-                <p className="text-xs text-gray-500 font-[300]">dennykate</p>
+                <p className="text-xs text-gray-500 font-[300]">
+                  {data?.sender?.username}
+                </p>
                 <p className="text-xs text-gray-500 font-[300]">•</p>
-                <p className="text-xs text-gray-500 font-[300]">10 mins ago</p>
+                <p className="text-xs text-gray-500 font-[300]">
+                  {formatDate(data?.createdAt as string)}
+                </p>
               </div>
 
               <MessageReactions isSender={isSender} />

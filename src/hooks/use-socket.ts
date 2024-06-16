@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 import config from "@/lib/config/config";
+import useProfile from "./use-profile";
 
 const useSocket = (): Socket | undefined => {
-  const [socket, setSocket] = useState<Socket>();
+  const socketRef = useRef<Socket>();
+  const profile = useProfile();
 
   useEffect(() => {
     const newSocket = io(config.baseWsURL, {
@@ -12,28 +14,26 @@ const useSocket = (): Socket | undefined => {
       reconnectionDelay: 1000,
     });
 
-    setSocket(newSocket);
-
     console.log("Attempting to connect to socket server at", config.baseWsURL);
 
     newSocket.on("connect", () => {
-      setSocket(newSocket);
       console.log("Connected to socket server");
+      socketRef.current = newSocket;
+
+      socketRef.current.emit("init-chat", profile?._id);
     });
 
     newSocket.on("disconnect", (reason) => {
       console.log("Disconnected from socket server:", reason);
-      // setSocket(newSocket);
     });
 
     return () => {
       console.log("Disconnecting from socket server");
       newSocket.disconnect();
-      setSocket(newSocket);
     };
   }, []);
 
-  return socket;
+  return socketRef.current;
 };
 
 export default useSocket;

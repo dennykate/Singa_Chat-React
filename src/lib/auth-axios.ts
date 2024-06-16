@@ -55,13 +55,8 @@ const authAxios = (): AxiosStatic => {
         if (error.response.status === 401) {
           encryptStorage.remove("accessToken");
           encryptStorage.remove("profile");
-        } else if (error.response.status >= 400) {
-          console.error("Error response:", error);
         }
-      } else {
-        console.error("Error without response:", error);
       }
-
       return Promise.reject(error);
     }
   );
@@ -69,4 +64,6 @@ const authAxios = (): AxiosStatic => {
   return axiosInstance as AxiosStatic;
 };
 
-export default authAxios;
+const autAxios = authAxios();
+
+export default autAxios;
