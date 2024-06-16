@@ -1,5 +1,5 @@
 import useSocket from "@/hooks/use-socket";
-import { setNewUser } from "@/lib/redux/services/userSlice";
+import { setNewUser } from "@/lib/redux/services/user-slice";
 import { UserType } from "@/types/type";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

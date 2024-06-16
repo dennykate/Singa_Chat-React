@@ -40,7 +40,7 @@ const MessageReactions: React.FC<PropsType> = ({ isSender }) => {
         <PopoverContent side="top" className="!w-auto">
           <div className="flex items-center gap-3 bg-white">
             <ReactionButton type="like" />
-            <ReactionButton type="heart" />
+            <ReactionButton type="love" />
             <ReactionButton type="haha" />
             <ReactionButton type="wow" />
             <ReactionButton type="sad" />

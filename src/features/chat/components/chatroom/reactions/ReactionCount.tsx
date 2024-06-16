@@ -4,7 +4,7 @@ const ReactionCount = () => {
   return (
     <div className="bg-primary-300 hover:bg-primary-400 py-1 px-2 rounded-full flex gap-3 items-center cursor-pointer">
       <div className="flex items-center">
-        <Reaction type="heart" />
+        <Reaction type="love" />
         <Reaction type="haha" />
         <Reaction type="wow" />
       </div>

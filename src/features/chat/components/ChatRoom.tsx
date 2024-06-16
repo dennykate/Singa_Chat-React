@@ -2,14 +2,12 @@ import ChatInput from "./chatroom/ChatInput";
 import ChatMessages from "./chatroom/ChatMessages";
 import ChatRoomHeader from "./chatroom/ChatRoomHeader";
 
-interface PropsType {
-  setShowFriends: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface PropsType {}
 
-const ChatRoom: React.FC<PropsType> = ({ setShowFriends }) => {
+const ChatRoom: React.FC<PropsType> = () => {
   return (
     <div className="md:w-[calc(100%-300px)] w-full bg-primary-100">
-      <ChatRoomHeader onFriendClick={() => setShowFriends(true)} />
+      <ChatRoomHeader  />
 
       <div className="max-w-[900px] mx-auto h-[calc(100%-80px)] lg:px-0 sm:px-4 px-2">
         <ChatMessages />

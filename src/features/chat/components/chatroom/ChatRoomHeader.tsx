@@ -20,34 +20,38 @@ import {
 import ChatActionButton from "./ChatActionButton";
 import unsupportedAction from "@/utilities/unsupported-action";
 import Avatar from "@/components/custom/common/Avatar";
+import { useDispatch, useSelector } from "react-redux";
+import { showSidebar } from "@/lib/redux/services/global-action-slice";
+import { RootState } from "@/lib/redux/store";
 
-interface PropsType {
-  onFriendClick: () => void;
-}
+interface PropsType {}
 
-const ChatRoomHeader: React.FC<PropsType> = ({ onFriendClick }) => {
+const ChatRoomHeader: React.FC<PropsType> = () => {
+  const dispatch = useDispatch();
+  const { chatUser } = useSelector((state: RootState) => state.chat);
+
   return (
     <div className="w-full sm:px-4  px-2 md:pt-4 pt-2 flex items-center sm:gap-4 gap-2">
       <button
-        onClick={onFriendClick}
+        onClick={() => dispatch(showSidebar())}
         className="relative bg-white min-w-[60px] h-[60px] rounded-full shadow-lg md:hidden flex justify-center items-center"
       >
         <IoPeopleOutline size={22} />
         <span className="sr-only">Friends Button</span>
       </button>
 
-      <div className="w-full bg-white sm:px-4 px-2 flex justify-between items-center h-[60px] rounded-full shadow-lg ">
+      <div className="w-full bg-white px-2 flex justify-between items-center h-[60px] rounded-full shadow-lg ">
         <div className="flex items-baseline sm:items-center gap-2">
           <Avatar
-            src="/assets/images/logos/logo-square.webp"
-            alt="logo"
-            className="w-[50px] h-[50px] "
+            src={chatUser?.profile as string}
+            alt={chatUser?.username as string}
+            className="w-[45px] h-[45px] "
           />
 
           <div className="flex flex-col items-start ">
-            <p className="text-base sm:block hidden">Denny Kate</p>
+            <p className="text-base sm:block hidden">{chatUser?.username}</p>
             <p className="text-xs text-gray-500 sm:block hidden">
-              dennykate22@gmail.com
+              {chatUser?.email}
             </p>
 
             {/* <p className="text-xs text-gray-500 -translate-y-3">Typing...</p> */}

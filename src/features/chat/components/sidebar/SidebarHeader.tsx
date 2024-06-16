@@ -1,11 +1,13 @@
+import { hideSidebar } from "@/lib/redux/services/global-action-slice";
 import React from "react";
 import { IoClose } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 
-interface PropsType {
-  onClose: () => void;
-}
+interface PropsType {}
 
-const SidebarHeader: React.FC<PropsType> = ({ onClose }) => {
+const SidebarHeader: React.FC<PropsType> = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-full h-[80px] flex items-center gap-2 border-b border-black border-opacity-10 relative">
       <div className="w-[70px] h-[70px]">
@@ -25,7 +27,7 @@ const SidebarHeader: React.FC<PropsType> = ({ onClose }) => {
 
       {/* Close Button  */}
       <div className="absolute top-0 right-0 px-4 h-full sm:hidden flex items-center justify-center">
-        <button onClick={onClose} className="relative">
+        <button onClick={() => dispatch(hideSidebar())} className="relative">
           <IoClose size={22} />
           <span className="sr-only">Close</span>
         </button>

@@ -1,32 +1,33 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import Sidebar from "./Sidebar";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import { hideSidebar } from "@/lib/redux/services/global-action-slice";
 
 interface PropsType {
-  showFriends: boolean;
-  setShowFriends: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SmallScreenSidebar: React.FC<PropsType> = ({
-  showFriends,
-  setShowFriends,
-}) => {
+const SmallScreenSidebar: React.FC<PropsType> = () => {
+  const dispatch = useDispatch()
+  const {sidebar} = useSelector((state: RootState) => state.globalAction);
+
   return (
     <>
       <div
         className={twMerge(
           "transition-all duration-300 ease-in-out sm:w-[300px] w-full h-full z-20 fixed top-0 left-0",
-          showFriends ? "translate-x-0" : "translate-x-[-100%]"
+          sidebar ? "translate-x-0" : "translate-x-[-100%]"
         )}
       >
-        <Sidebar setShowFriends={setShowFriends} />
+        <Sidebar  />
       </div>
 
       <div
-        onClick={() => setShowFriends(false)}
+        onClick={() => dispatch(hideSidebar())}
         className={twMerge(
           "fixed z-10 top-0 right-0 bg-black w-full h-full bg-opacity-50",
-          showFriends ? "block" : "hidden"
+          sidebar ? "block" : "hidden"
         )}
       />
     </>

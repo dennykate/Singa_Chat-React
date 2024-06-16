@@ -4,7 +4,7 @@ import FriendCard from "./FriendCard";
 import getUsers from "../../services/get-users";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { setUser } from "@/lib/redux/services/userSlice";
+import { setUser } from "@/lib/redux/services/user-slice";
 import { UserType } from "@/types/type";
 
 const Friends = () => {
