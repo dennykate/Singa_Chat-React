@@ -30,7 +30,7 @@ const AuthForm = () => {
         <AppleButton />
       </div>
 
-      <div className="text-sm font-[400] text-center">
+      <div className="text-sm font-[400] text-center sm:my-0 my-2">
         <Link to={""} className="hover:underline">
           Terms and Conditions
         </Link>{" "}
