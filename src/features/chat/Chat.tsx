@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import useGetDeleteMessage from "./services/message/use-get-delete-message";
 import useGetSendMessage from "./services/message/use-get-send-message";
+import useGetUpdateMessage from "./services/message/use-get-update-message";
+import useGetReadAllMessages from "./services/message/use-get-read-all-messages";
+import useGetTyping from "./services/message/use-get-typing";
 // import StartChat from "./components/StartChat";
 
 const Chat = () => {
@@ -20,6 +23,15 @@ const Chat = () => {
 
   // Getting new message
   useGetSendMessage();
+
+  // Getting update message
+  useGetUpdateMessage();
+
+  // Getting read all messages
+  useGetReadAllMessages();
+
+  // Geting typing or not
+  useGetTyping();
 
   return (
     <main className="w-full h-screen overflow-hidden flex">

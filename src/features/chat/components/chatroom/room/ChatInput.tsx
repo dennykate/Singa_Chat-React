@@ -3,31 +3,39 @@ import { ImAttachment } from "react-icons/im";
 import unsupportedAction from "@/utilities/unsupported-action";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import EmojiPicker from "./input/EmojiPicker";
-import PreviewMessage from "./input/PreviewMessage";
+import EmojiPicker from "../input/EmojiPicker";
+import PreviewMessage from "../input/PreviewMessage";
 import useProfile from "@/hooks/use-profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import useSendMessage from "../../services/message/use-send-message";
+import useSendMessage from "../../../services/message/use-send-message";
+import useTyping from "../../../services/message/use-typing";
 
 const ChatInput = () => {
   const profile = useProfile();
   const { chatUser } = useSelector((state: RootState) => state.chat);
 
   const { onSendMessage } = useSendMessage();
+  const { onTyping } = useTyping();
 
   const [content, setContent] = useState<string>("");
   const [isStartTyping, setIsStartTyping] = useState<boolean>(false);
   const [showPreview, setShowPreview] = useState<boolean>(false);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length > 0) setIsStartTyping(true);
-    else setIsStartTyping(false);
+    if (e.target.value.length > 0) {
+      onTyping("is-typing");
+      setIsStartTyping(true);
+    } else {
+      onTyping("is-not-typing");
+      setIsStartTyping(false);
+    }
 
     setContent(e.target.value);
   };
 
   const onSubmitHandler = () => {
+    if (!content || content === "") return;
     const data = {
       sender: profile?._id as string,
       recipient: chatUser?._id as string,
@@ -62,13 +70,17 @@ const ChatInput = () => {
         )}
       >
         <textarea
+          autoFocus
           name="Chat Input"
           id="chat-input"
           value={content}
           onChange={onChangeHandler}
           onKeyDown={onKeyDownHandler}
           onFocus={() => setShowPreview(true)}
-          onBlur={() => setShowPreview(false)}
+          onBlur={() => {
+            setShowPreview(false);
+            onTyping("is-not-typing");
+          }}
           placeholder="Type here ..."
           className="border-none rounded-lg outline-none w-full h-full p-4 text-sm placeholder:text-sm scrollbar-hide resize-none"
         ></textarea>

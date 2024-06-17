@@ -16,7 +16,7 @@ const StartChat: React.FC<PropsType> = () => {
 
       <div className="bg-primary-800 px-8 py-4 md:block hidden">
         <p className="text-base text-white">
-          Please select chat to start an conservation.
+          Please select a chat to start an conservation.
         </p>
       </div>
 

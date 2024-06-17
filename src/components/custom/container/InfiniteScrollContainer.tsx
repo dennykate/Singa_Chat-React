@@ -39,7 +39,7 @@ const InfiniteScrollContainer: React.FC<PropsType> = ({
   return (
     <div
       className="w-full h-full overflow-y-auto flex flex-col-reverse justify-start gap-4 sm:px-2 
-      scrollbar-thin scrollbar-thumb-primary scrollbar-track-transparent py-4"
+      scrollbar-thin scrollbar-thumb-primary relative scrollbar-track-transparent pt-4"
     >
       {children({ lastMessageElementRef })}
       <div ref={loadMoreRef}></div>

@@ -26,4 +26,5 @@ export type MessageType = {
   createdAt: string;
   updatedAt: string;
   isSender: boolean;
+  isEdited: boolean;
 };

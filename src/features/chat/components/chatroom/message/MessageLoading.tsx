@@ -1,4 +1,4 @@
-import SkeletonMessageCard from "../SkeletonMessageCard";
+import SkeletonMessageCard from "./SkeletonMessageCard";
 
 interface PropsType {
   isLoading: boolean;

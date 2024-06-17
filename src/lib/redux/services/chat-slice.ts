@@ -5,11 +5,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface ChatState {
   chatUser?: UserType;
   messages: MessageType[];
+  isTyping: boolean;
 }
 
 const initialState: ChatState = {
   chatUser: undefined,
   messages: [],
+  isTyping: false,
 };
 
 export const chatSlice = createSlice({
@@ -31,10 +33,37 @@ export const chatSlice = createSlice({
         return message._id !== payload;
       });
     },
+    updateMessage: (state, { payload }) => {
+      state.messages = state.messages?.map((message: MessageType) => {
+        if (message._id === payload?._id) {
+          message.content = payload.content;
+        }
+
+        return message;
+      });
+    },
+    readAllMessages: (state) => {
+      state.messages = state.messages?.map((message: MessageType) => {
+        if (message.isRead === false) message.isRead = true;
+
+        return message;
+      });
+    },
+    setIsTyping: (state, { payload }) => {
+      console.log("is typing", payload);
+      state.isTyping = payload;
+    },
   },
 });
 
-export const { setChatUser, setMessages, addNewMessage, deleteMessage } =
-  chatSlice.actions;
+export const {
+  setChatUser,
+  setMessages,
+  addNewMessage,
+  deleteMessage,
+  updateMessage,
+  readAllMessages,
+  setIsTyping,
+} = chatSlice.actions;
 
 export default chatSlice.reducer;

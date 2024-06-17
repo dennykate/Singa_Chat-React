@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import { setMessages } from "@/lib/redux/services/chat-slice";
-import getMessages from "../../services/message/get-messages";
+import getMessages from "../../../services/message/get-messages";
 import useProfile from "@/hooks/use-profile";
-import MessageCard from "./MessageCard";
+import MessageCard from "../message/MessageCard";
 import { MessageType } from "@/types/type";
-import MessageLoading from "./message/MessageLoading";
+import MessageLoading from "../message/MessageLoading";
 import InfiniteScrollContainer from "@/components/custom/container/InfiniteScrollContainer";
+import EmptyMessage from "../message/EmptyMessage";
 
 const ChatMessages = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,6 @@ const ChatMessages = () => {
   const [page, setPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-;
 
   const fetchMessages = async (page: number) => {
     setIsLoading(true);
@@ -46,6 +45,8 @@ const ChatMessages = () => {
 
   return (
     <div className="w-full sm:h-[calc(100%-80px)] h-[calc(100%-70px)] overflow-hidden">
+      {messages?.length === 0 && !isLoading && <EmptyMessage />}
+
       <InfiniteScrollContainer
         isLoading={isLoading}
         page={page}
@@ -58,11 +59,17 @@ const ChatMessages = () => {
               if (messages.length === index + 1) {
                 return (
                   <div ref={lastMessageElementRef} key={message?._id}>
-                    <MessageCard data={message} />
+                    <MessageCard data={message} isLastMessage={index === 0} />
                   </div>
                 );
               } else {
-                return <MessageCard key={message?._id} data={message} />;
+                return (
+                  <MessageCard
+                    key={message?._id}
+                    data={message}
+                    isLastMessage={index === 0}
+                  />
+                );
               }
             })}
 
