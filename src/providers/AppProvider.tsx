@@ -23,7 +23,7 @@ const AppProvider: React.FC<PropsType> = ({ children }) => {
             <SocketProvider>
               <InitProcessProvider>
                 {children}
-                <ToastContainer theme="light" />
+                <ToastContainer theme="light" autoClose={2500} />
               </InitProcessProvider>
             </SocketProvider>
           </GoogleOAuthProvider>
