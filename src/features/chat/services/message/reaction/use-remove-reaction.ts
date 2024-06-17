@@ -16,8 +16,6 @@ const useRemoveReaction = () => {
     (data: SendMessageType) => {
       if (socket && socket.connected) {
         socket.emit("remove-reaction", data);
-      } else {
-        console.log("Socket is not connected");
       }
     },
     [socket]

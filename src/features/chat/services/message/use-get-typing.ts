@@ -19,7 +19,6 @@ const useGetTyping = () => {
     }
 
     const handleTyping = (data: TypingType) => {
-      console.log("is same => ", data.sender === chatUser?._id);
       if (data.sender === chatUser?._id) {
         dispatch(setIsTyping(true));
       }

@@ -1,4 +1,3 @@
-import useProfile from "@/hooks/use-profile";
 import config from "@/lib/config/config";
 import React, {
   createContext,
@@ -16,7 +15,6 @@ interface PropsType {
 export const SocketContext = createContext<Socket | undefined>(undefined);
 
 export const SocketProvider: FC<PropsType> = ({ children }) => {
-  const profile = useProfile();
   const [socket, setSocket] = useState<Socket | undefined>(undefined);
 
   useEffect(() => {
@@ -24,12 +22,12 @@ export const SocketProvider: FC<PropsType> = ({ children }) => {
 
     if (newSocket) {
       setSocket(newSocket);
-
-      newSocket.emit("init-chat", profile?._id);
     }
 
     return () => {
-      newSocket.close();
+      if (newSocket) {
+        newSocket.close();
+      }
     };
   }, []);
 

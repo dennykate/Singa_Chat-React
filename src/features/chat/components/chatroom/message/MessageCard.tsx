@@ -68,7 +68,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
               <div
                 onDoubleClick={() => setOpenActions(true)}
                 className={twMerge(
-                  "px-4 pt-4 pb-2 shadow-md rounded-md max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] min-w-[100px] ",
+                  "px-4 pt-4 pb-2 shadow-md rounded-md sm:max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] min-w-[100px] xs:max-w-[300px] max-w-[270px] overflow-hidden ",
                   isSender ? "bg-white" : "bg-gray-100"
                 )}
               >
@@ -143,7 +143,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
             setEditMessage(undefined);
           }}
         >
-          <DialogContent>
+          <DialogContent >
             <EditMessage
               editMessage={editMessage}
               onEditMessage={() => {

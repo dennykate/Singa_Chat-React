@@ -53,7 +53,6 @@ export const chatSlice = createSlice({
       state.isTyping = payload;
     },
     addReaction: (state, { payload }) => {
-      console.log("add reaction => ", payload);
       state.messages = state.messages?.map((message: MessageType) => {
         if (message?._id === payload?.messageId) {
           message.reactions = [

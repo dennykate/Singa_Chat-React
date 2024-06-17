@@ -32,6 +32,7 @@ const GoogleButton = () => {
         toast.success("Login Success");
 
         navigate("/chat");
+        // window.location.href = "/chat";
       }
 
       setIsLoading(false);
@@ -44,7 +45,8 @@ const GoogleButton = () => {
       onClick={() => {
         login();
       }}
-      className={twMerge("lg:w-full xs:w-[300px] w-[260px] px-4 py-2.5 border border-black border-opacity-40 flex items-center justify-start sm:gap-4 gap-2 ",
+      className={twMerge(
+        "lg:w-full xs:w-[300px] w-[260px] px-4 py-2.5 border border-black border-opacity-40 flex items-center justify-start sm:gap-4 gap-2 ",
         isLoading ? "opacity-70" : "hover:ring-black hover:ring-1 opacity-100"
       )}
     >

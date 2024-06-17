@@ -14,8 +14,6 @@ const useReadAllMessages = () => {
     (data: SendMessageType) => {
       if (socket && socket.connected) {
         socket.emit("read-all-messages", data);
-      } else {
-        console.log("Socket is not connected");
       }
     },
     [socket]

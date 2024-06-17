@@ -16,9 +16,7 @@ const useAddReaction = () => {
     (data: SendMessageType) => {
       if (socket && socket.connected) {
         socket.emit("add-reaction", data);
-      } else {
-        console.log("Socket is not connected");
-      }
+      } 
     },
     [socket]
   );

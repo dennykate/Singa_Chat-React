@@ -20,6 +20,7 @@ const SidebarFooter = () => {
     remove("accessToken");
     remove("refreshToken");
     remove("profile");
+    remove("chatUser");
     dispatch(setChatSliceDefault());
     dispatch(setUserSliceDefault());
     toast.success("Logout success");

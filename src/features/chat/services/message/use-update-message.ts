@@ -13,11 +13,8 @@ const useUpdateMessage = () => {
   const onUpdateMessage = useCallback(
     (data: UpdateMessageType) => {
       if (socket && socket.connected) {
-        console.log("Sending message: ", data);
         socket.emit("update-message", data);
-      } else {
-        console.log("Socket is not connected");
-      }
+      } 
     },
     [socket]
   );

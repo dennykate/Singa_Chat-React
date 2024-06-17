@@ -10,11 +10,9 @@ const authAxios = (): AxiosStatic => {
   const token = encryptStorage.get("accessToken");
 
   if (!token) {
-    console.error("No token found in storage.");
     throw new Error("No token found.");
   }
 
-  console.log("Token found:", token);
 
   const axiosInstance = axios.create({
     headers: {
@@ -25,19 +23,20 @@ const authAxios = (): AxiosStatic => {
   axiosInstance.interceptors.request.use((req) => {
     try {
       const decodedData = jwtDecode(token as string) as any;
-      console.log("Decoded data:", decodedData);
 
       const isExpired = decodedData.exp - Math.floor(Date.now() / 1000) < 1;
 
       if (isExpired) {
         encryptStorage.remove("accessToken");
+        encryptStorage.remove("refreshToken");
         encryptStorage.remove("profile");
-        throw new Error("Session expired. Redirecting to login.");
+        encryptStorage.remove("chatUser");
+
+        window.location.reload();
       }
 
       return req;
     } catch (error) {
-      console.error("Error decoding token:", error);
       throw new Error("Invalid token.");
     }
   });
@@ -52,9 +51,13 @@ const authAxios = (): AxiosStatic => {
     (error) => {
       if (error.response) {
         toast.error(error.response.data?.message || "Something went wrong");
-        if (error.response.status === 401) {
+        if (error.response.status === 403) {
           encryptStorage.remove("accessToken");
+          encryptStorage.remove("refreshToken");
           encryptStorage.remove("profile");
+          encryptStorage.remove("chatUser");
+
+          window.location.reload();
         }
       }
       return Promise.reject(error);

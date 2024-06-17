@@ -12,10 +12,15 @@ import useGetReadAllMessages from "./services/message/use-get-read-all-messages"
 import useGetTyping from "./services/message/use-get-typing";
 import useGetReaction from "./services/message/reaction/use-get-reaction";
 import useGetRemoveReaction from "./services/message/reaction/use-get-remove-reaction";
+import useInitChat from "./services/use-init-chat";
+
 // import StartChat from "./components/StartChat";
 
 const Chat = () => {
   const { chatUser } = useSelector((state: RootState) => state.chat);
+
+  // Initialize the chat
+  useInitChat();
 
   // Getting new user
   useGetNewUser();

@@ -7,8 +7,6 @@ const useNewUser = () => {
   const newUser = (accessToken: string) => {
     if (socket && socket.connected) {
       socket.emit("new-user", { accessToken });
-    } else {
-      console.warn("Socket is not connected, cannot emit new-user event");
     }
   };
 

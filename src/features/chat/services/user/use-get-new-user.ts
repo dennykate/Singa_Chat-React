@@ -1,3 +1,4 @@
+import useProfile from "@/hooks/use-profile";
 import useSocket from "@/hooks/use-socket";
 import { setNewUser } from "@/lib/redux/services/user-slice";
 import { UserType } from "@/types/type";
@@ -6,15 +7,16 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 const useGetNewUser = () => {
+  const profile = useProfile();
   const dispatch = useDispatch();
-  
+
   const socket = useSocket();
 
   useEffect(() => {
     if (!socket) return;
 
     const handleNewUser = (data: { user: UserType }) => {
-      if (data?.user) {
+      if (data?.user && data?.user?._id !== profile?._id) {
         toast.success(`New user - ${data.user.username} is joined now !`);
 
         dispatch(setNewUser(data.user));

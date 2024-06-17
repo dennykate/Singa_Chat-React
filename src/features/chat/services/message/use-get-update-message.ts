@@ -15,7 +15,6 @@ const useGetUpdateMessage = () => {
     }
 
     const handleMessage = (message: MessageType) => {
-      console.log("update message  => ", message);
       dispatch(updateMessage(message));
       dispatch(updateLastMessage(message));
     };

@@ -14,9 +14,7 @@ const useTyping = () => {
     (type: "is-typing" | "is-not-typing") => {
       if (socket && socket.connected) {
         socket.emit(type, { recipient: chatUser?._id, sender: profile?._id });
-      } else {
-        console.log("Socket is not connected");
-      }
+      } 
     },
     [socket]
   );

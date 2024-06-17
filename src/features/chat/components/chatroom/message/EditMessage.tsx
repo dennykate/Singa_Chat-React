@@ -44,7 +44,7 @@ const EditMessage: React.FC<PropsType> = ({ editMessage, onEditMessage }) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full overflow-hidden flex flex-col gap-4">
       <div className="w-full max-h-[300px] overflow-y-auto p-2">
         <MessageCard data={{ ...editMessage, content }} />
       </div>
