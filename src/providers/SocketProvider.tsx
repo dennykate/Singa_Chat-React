@@ -18,7 +18,10 @@ export const SocketProvider: FC<PropsType> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | undefined>(undefined);
 
   useEffect(() => {
-    const newSocket = io(config.baseWsURL);
+    const newSocket = io(config.baseWsURL, {
+      transports: ["websocket"],
+      upgrade: false,
+    });
 
     if (newSocket) {
       setSocket(newSocket);
