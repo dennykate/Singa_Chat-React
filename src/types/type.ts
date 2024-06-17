@@ -10,8 +10,8 @@ export type UserType = {
   lastMessage?: string;
 };
 
-interface IReaction {
-  user: string;
+export interface IReaction {
+  user: UserType;
   type: ReactionType;
 }
 
@@ -27,4 +27,5 @@ export type MessageType = {
   updatedAt: string;
   isSender: boolean;
   isEdited: boolean;
+  totalReactions: number;
 };

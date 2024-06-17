@@ -10,6 +10,7 @@ import useGetSendMessage from "./services/message/use-get-send-message";
 import useGetUpdateMessage from "./services/message/use-get-update-message";
 import useGetReadAllMessages from "./services/message/use-get-read-all-messages";
 import useGetTyping from "./services/message/use-get-typing";
+import useGetReaction from "./services/message/reaction/use-get-reaction";
 // import StartChat from "./components/StartChat";
 
 const Chat = () => {
@@ -30,8 +31,11 @@ const Chat = () => {
   // Getting read all messages
   useGetReadAllMessages();
 
-  // Geting typing or not
+  // Getting typing or not
   useGetTyping();
+
+  // Getting message reaction
+  useGetReaction();
 
   return (
     <main className="w-full h-screen overflow-hidden flex">

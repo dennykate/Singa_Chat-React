@@ -50,8 +50,23 @@ export const chatSlice = createSlice({
       });
     },
     setIsTyping: (state, { payload }) => {
-      console.log("is typing", payload);
       state.isTyping = payload;
+    },
+    addReaction: (state, { payload }) => {
+      state.messages = state.messages?.map((message: MessageType) => {
+        if (message?._id === payload?.messageId) {
+          message.reactions = [
+            {
+              user: payload.reactionUserId,
+              type: payload.reactionType,
+            },
+            ...message.reactions,
+          ];
+          message.totalReactions += 1;
+        }
+
+        return message;
+      });
     },
   },
 });
@@ -64,6 +79,7 @@ export const {
   updateMessage,
   readAllMessages,
   setIsTyping,
+  addReaction,
 } = chatSlice.actions;
 
 export default chatSlice.reducer;

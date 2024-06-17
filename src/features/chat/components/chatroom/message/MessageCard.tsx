@@ -106,7 +106,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
                     )}
                   </div>
 
-                  <MessageReactions isSender={isSender} />
+                  <MessageReactions isSender={isSender} data={data} />
                 </div>
               </div>
             </PopoverTrigger>
