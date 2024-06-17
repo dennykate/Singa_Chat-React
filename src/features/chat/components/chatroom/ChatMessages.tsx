@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import { setMessages } from "@/lib/redux/services/chat-slice";
-import getMessages from "../../services/get-messages";
+import getMessages from "../../services/message/get-messages";
 import useProfile from "@/hooks/use-profile";
 import MessageCard from "./MessageCard";
 import { MessageType } from "@/types/type";
@@ -17,6 +17,8 @@ const ChatMessages = () => {
   const [page, setPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+;
 
   const fetchMessages = async (page: number) => {
     setIsLoading(true);
@@ -37,6 +39,10 @@ const ChatMessages = () => {
   useEffect(() => {
     fetchMessages(page);
   }, [chatUser?._id, dispatch, profile?._id, page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [chatUser]);
 
   return (
     <div className="w-full sm:h-[calc(100%-80px)] h-[calc(100%-70px)] overflow-hidden">
@@ -59,7 +65,7 @@ const ChatMessages = () => {
                 return <MessageCard key={message?._id} data={message} />;
               }
             })}
-            
+
             <MessageLoading isLoading={isLoading} page={page} />
           </>
         )}

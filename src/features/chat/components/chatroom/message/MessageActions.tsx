@@ -4,9 +4,22 @@ import MessageActionButton from "./MessageActionButton";
 import { BsPin, BsCopy, BsTrash, BsCheckCircle } from "react-icons/bs";
 import { IoArrowRedoOutline, IoArrowUndoOutline } from "react-icons/io5";
 import { useClipboard } from "@/hooks/use-clipboard";
+import { MessageType } from "@/types/type";
+import { twMerge } from "tailwind-merge";
+import useProfile from "@/hooks/use-profile";
+import { useMemo } from "react";
+import useDeleteMessage from "@/features/chat/services/message/use-delete-message";
 
-const MessageActions = () => {
+interface PropsType {
+  data: MessageType;
+}
+
+const MessageActions: React.FC<PropsType> = ({ data }) => {
+  const profile = useProfile();
+  const { onDeleteMessage } = useDeleteMessage();
   const { copy } = useClipboard();
+
+  const isOwner = useMemo(() => data?.sender?._id === profile?._id, [data]);
 
   return (
     <div className="w-[200px] flex flex-col gap-[2px]">
@@ -43,7 +56,13 @@ const MessageActions = () => {
       <MessageActionButton
         Icon={BsTrash}
         label="Delete"
-        className="text-red-500"
+        onClick={() => isOwner && onDeleteMessage(data?._id)}
+        className={twMerge(
+          "text-red-500",
+          isOwner
+            ? "opacity-100"
+            : "opacity-80 grayscale hover:bg-transparent cursor-default"
+        )}
       />
     </div>
   );

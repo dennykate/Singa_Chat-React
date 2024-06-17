@@ -68,7 +68,7 @@ const MessageCard: React.FC<PropsType> = ({ data }) => {
         </PopoverTrigger>
 
         <PopoverContent side="top" className="!w-auto !p-1">
-          <MessageActions />
+          <MessageActions data={data}/>
         </PopoverContent>
       </Popover>
     </div>

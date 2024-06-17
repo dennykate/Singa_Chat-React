@@ -8,13 +8,13 @@ import PreviewMessage from "./input/PreviewMessage";
 import useProfile from "@/hooks/use-profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import useMessages from "../../services/use-messages";
+import useSendMessage from "../../services/message/use-send-message";
 
 const ChatInput = () => {
   const profile = useProfile();
   const { chatUser } = useSelector((state: RootState) => state.chat);
 
-  const { onSendMessage } = useMessages();
+  const { onSendMessage } = useSendMessage();
 
   const [content, setContent] = useState<string>("");
   const [isStartTyping, setIsStartTyping] = useState<boolean>(false);

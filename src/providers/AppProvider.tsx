@@ -7,6 +7,8 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { EncryptProvider } from "use-encrypt-storage";
+import InitProcessProvider from "./InitProcessProvider";
+import { SocketProvider } from "./SocketProvider";
 
 interface PropsType {
   children: React.ReactNode;
@@ -18,8 +20,12 @@ const AppProvider: React.FC<PropsType> = ({ children }) => {
       <Provider store={store}>
         <EncryptProvider secretKey={config.encryptStorageSecretKey}>
           <GoogleOAuthProvider clientId={config.googleClientID}>
-            {children}
-            <ToastContainer theme="light" />
+            <SocketProvider>
+              <InitProcessProvider>
+                {children}
+                <ToastContainer theme="light" />
+              </InitProcessProvider>
+            </SocketProvider>
           </GoogleOAuthProvider>
         </EncryptProvider>
       </Provider>

@@ -12,7 +12,7 @@ const SidebarHeader: React.FC<PropsType> = () => {
     <div className="w-full h-[80px] flex items-center gap-2 border-b border-black border-opacity-10 relative">
       <div className="w-[70px] h-[70px]">
         <img
-          src="/assets/images/logos/logo-square.webp"
+          src="/assets/images/logos/logo-square.png"
           alt="logo"
           className="w-full h-full object-cover"
         />

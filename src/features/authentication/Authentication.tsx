@@ -15,7 +15,7 @@ const Authentication = () => {
         overflow-hidden lg:block hidden"
         >
           <img
-            src="/assets/images/logos/logo-square.webp"
+            src="/assets/images/logos/logo-square.png"
             alt="logo-square"
             className="w-full h-full object-cover"
           />

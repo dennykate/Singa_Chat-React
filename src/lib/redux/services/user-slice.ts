@@ -28,6 +28,7 @@ export const userSlice = createSlice({
           payload?.sender?._id == user?._id ||
           payload?.recipient?._id == user?._id
         ) {
+          console.log("update last message => ", payload);
           user.lastMessage = payload?.content;
         }
 

@@ -5,6 +5,7 @@ import { UserType } from "@/types/type";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { twMerge } from "tailwind-merge";
+import { useEncryptStorage } from "use-encrypt-storage";
 
 interface PropsType {
   user: UserType;
@@ -12,10 +13,12 @@ interface PropsType {
 
 const FriendCard: React.FC<PropsType> = ({ user }) => {
   const dispatch = useDispatch();
+  const { set } = useEncryptStorage();
   const { chatUser } = useSelector((state: RootState) => state.chat);
 
   const onClickHandler = () => {
     dispatch(setChatUser(user));
+    set("chatUser", JSON.stringify(user));
   };
 
   const isActiveUser = useMemo(

@@ -11,7 +11,7 @@ const AuthForm = () => {
     >
       <div className="w-[160px] h-[160px]">
         <img
-          src="/assets/images/logos/logo-square.webp"
+          src="/assets/images/logos/logo-square.png"
           alt="logo-square"
           className="w-full h-full object-cover"
         />
