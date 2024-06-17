@@ -5,7 +5,7 @@ function formatDate(dateString: string): string {
   const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
   const diffInMinutes = Math.floor(diffInSeconds / 60);
 
-  if (diffInSeconds < 60) {
+  if (diffInSeconds < 60 && diffInSeconds > 0) {
     return `${diffInSeconds} seconds ago`;
   }
 

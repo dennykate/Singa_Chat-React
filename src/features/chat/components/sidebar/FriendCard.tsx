@@ -33,7 +33,7 @@ const FriendCard: React.FC<PropsType> = ({ user }) => {
       className={twMerge(
         "w-full px-4 h-[70px] flex items-center gap-3 transition-all duration-300 ease-in-out",
         isActiveUser
-          ? "bg-primary-500 rounded-full"
+          ? "bg-primary-300 rounded-lg"
           : "hover:bg-primary-100/50 bg-gray-100"
       )}
       onClick={onClickHandler}
@@ -41,22 +41,16 @@ const FriendCard: React.FC<PropsType> = ({ user }) => {
       <Avatar
         src={user?.profile}
         alt={user?.username}
-        className="min-w-[40px] h-[40px] border border-primary/50"
+        className="min-w-[45px] h-[45px] border border-primary/50"
       />
 
       <div className="flex flex-col gap-[2px] items-start w-[calc(100%-70px)]">
-        <h6
-          className={twMerge(
-            "text-sm text-start",
-            isActiveUser ? "text-white" : "text-black"
-          )}
-        >
+        <h6 className={twMerge("text-sm text-start text-black")}>
           {user?.username}
         </h6>
         <p
           className={twMerge(
-            "truncate text-xs w-full text-start",
-            isActiveUser ? "text-gray-300 " : "text-gray-500 "
+            "truncate text-xs w-full text-start text-gray-500 "
           )}
         >
           {user?.lastMessage !== ""

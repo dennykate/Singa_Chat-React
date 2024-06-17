@@ -35,7 +35,7 @@ const ChatRoomHeader: React.FC<PropsType> = () => {
       <SidebarButton onClick={() => dispatch(showSidebar())} />
 
       <div className="w-full bg-white px-2 flex justify-between items-center h-[60px] rounded-full shadow-lg border-black border border-opacity-10">
-        <div className="flex items-baseline sm:items-center gap-2">
+        <div className="flex items-center gap-2">
           <Avatar
             src={chatUser?.profile as string}
             alt={chatUser?.username as string}
@@ -43,18 +43,11 @@ const ChatRoomHeader: React.FC<PropsType> = () => {
           />
 
           <div className="flex flex-col items-start ">
-            <p className="text-base sm:block hidden">{chatUser?.username}</p>
-            <p className="text-xs text-gray-500 sm:block hidden">
-              {isTyping ? (
-                <>
-                  {/* <span className="md:block hidden">
-                    {chatUser?.username} is typing ...
-                  </span> */}
-                  <span className="block">Typing ...</span>
-                </>
-              ) : (
-                chatUser?.email
-              )}
+            <p className="sm:text-base text-sm xs:w-[100px] w-[70px] truncate">
+              {chatUser?.username}
+            </p>
+            <p className="sm:text-xs text-[10px] text-gray-500 xs:w-[100px] w-[70px] truncate">
+              {isTyping ? "Typing" : chatUser?.email}
             </p>
           </div>
         </div>

@@ -24,7 +24,7 @@ const Friends = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full h-[calc(100%-160px)] flex flex-col gap-[2px]">
+    <div className="w-full h-[calc(100%-160px)] flex flex-col gap-[2px] py-[2px] px-2">
       {users?.map((user: UserType) => (
         <FriendCard key={user?._id} user={user} />
       ))}

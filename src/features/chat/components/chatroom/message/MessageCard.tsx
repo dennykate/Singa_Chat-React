@@ -83,7 +83,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
                   )}
                 >
                   <div className="flex items-center gap-2">
-                    {!isSender && (
+                    {/* {!isSender && (
                       <>
                         <p className="text-xs text-gray-500 font-[300]">
                           {data?.sender?.username}
@@ -91,7 +91,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
 
                         <p className="text-xs text-gray-500 font-[300]">•</p>
                       </>
-                    )}
+                    )} */}
 
                     <p className="text-xs text-gray-500 font-[300]">
                       {formatDate(data?.createdAt as string)}
@@ -143,7 +143,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
             setEditMessage(undefined);
           }}
         >
-          <DialogContent >
+          <DialogContent>
             <EditMessage
               editMessage={editMessage}
               onEditMessage={() => {

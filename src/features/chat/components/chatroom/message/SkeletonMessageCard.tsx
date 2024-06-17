@@ -16,7 +16,7 @@ const SkeletonMessageCard: React.FC<PropsType> = ({ isSender }) => {
     >
       {!isSender && <Skeleton className="w-[30px] h-[30px] rounded-full" />}
 
-      <Skeleton className="rounded-md max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] h-[100px] min-w-[100px]" />
+      <Skeleton className="rounded-md max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] h-[100px] min-w-[220px]" />
     </div>
   );
 };
