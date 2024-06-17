@@ -6,14 +6,22 @@ import { useEncryptStorage } from "use-encrypt-storage";
 import Avatar from "@/components/custom/common/Avatar";
 import useProfile from "@/hooks/use-profile";
 import alertActions from "@/utilities/alert-actions";
+import { useDispatch } from "react-redux";
+import { setChatSliceDefault } from "@/lib/redux/services/chat-slice";
+import { setUserSliceDefault } from "@/lib/redux/services/user-slice";
 
 const SidebarFooter = () => {
   const navigate = useNavigate();
   const profile = useProfile();
+  const dispatch = useDispatch();
   const { remove } = useEncryptStorage();
 
   const onLogoutHandler = () => {
     remove("accessToken");
+    remove("refreshToken");
+    remove("profile");
+    dispatch(setChatSliceDefault());
+    dispatch(setUserSliceDefault());
     toast.success("Logout success");
 
     navigate("/login");
@@ -23,9 +31,9 @@ const SidebarFooter = () => {
     <button
       onClick={() =>
         alertActions({
-          title: "Are you sure to logout ?",
+          title: "Are you sure you want to logout?",
           description:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum illo tempore amet at laudantium possimus distinctio ea incidunt iure. Autem blanditiis cupiditate ratione libero. Amet minima quia inventore debitis quaerat!",
+            "Logging out will disconnect you from your chats and notifications. Make sure to finish any ongoing conversations before proceeding. Do you wish to continue?",
           callback: () => onLogoutHandler(),
         })
       }

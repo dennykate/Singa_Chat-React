@@ -20,7 +20,7 @@ const InitProcessProvider: React.FC<PropsType> = ({ children }) => {
   }, [dispatch, get]);
 
   useEffect(() => {
-    // setDefaultChatUser();
+    setDefaultChatUser();
   }, [setDefaultChatUser]);
 
   return <>{children}</>;

@@ -11,6 +11,7 @@ import useGetUpdateMessage from "./services/message/use-get-update-message";
 import useGetReadAllMessages from "./services/message/use-get-read-all-messages";
 import useGetTyping from "./services/message/use-get-typing";
 import useGetReaction from "./services/message/reaction/use-get-reaction";
+import useGetRemoveReaction from "./services/message/reaction/use-get-remove-reaction";
 // import StartChat from "./components/StartChat";
 
 const Chat = () => {
@@ -36,6 +37,9 @@ const Chat = () => {
 
   // Getting message reaction
   useGetReaction();
+
+  // Getting message removed reacion
+  useGetRemoveReaction();
 
   return (
     <main className="w-full h-screen overflow-hidden flex">

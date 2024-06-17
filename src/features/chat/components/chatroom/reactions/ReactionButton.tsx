@@ -1,4 +1,5 @@
 import useAddReaction from "@/features/chat/services/message/reaction/use-add-reaction";
+import useRemoveReaction from "@/features/chat/services/message/reaction/use-remove-reaction";
 import useProfile from "@/hooks/use-profile";
 import { IReaction, MessageType, ReactionType } from "@/types/type";
 import { HTMLAttributes, useMemo } from "react";
@@ -18,15 +19,20 @@ export const ReactionButton: React.FC<PropsType> = ({
   const profile = useProfile();
 
   const { onAddReaction } = useAddReaction();
+  const { onRemoveReaction } = useRemoveReaction();
 
-  const onReactionAddHandler = (type: ReactionType) => {
+  const onReactionAddHandler = (type: ReactionType, isExist: boolean) => {
     const reaction = {
       reactionType: type,
       userId: profile?._id as string,
       messageId: data._id,
     };
 
-    onAddReaction(reaction);
+    if (isExist) {
+      onRemoveReaction(reaction);
+    } else {
+      onAddReaction(reaction);
+    }
   };
 
   const hasReaction = useMemo(() => {
@@ -34,16 +40,12 @@ export const ReactionButton: React.FC<PropsType> = ({
       (reaction: IReaction) =>
         reaction.type === type && reaction.user._id === profile?._id
     );
-  }, [data.reactions, profile?._id, type]);
+  }, [data, profile?._id, type]);
 
   return (
     <button
       onClick={() => {
-        if (hasReaction) {
-          //
-        } else {
-          onReactionAddHandler(type);
-        }
+        onReactionAddHandler(type, hasReaction ? true : false);
       }}
       {...props}
       className={twMerge("relative p-1 ", className)}

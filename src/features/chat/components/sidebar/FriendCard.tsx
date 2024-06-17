@@ -1,5 +1,6 @@
 import Avatar from "@/components/custom/common/Avatar";
 import { setChatUser } from "@/lib/redux/services/chat-slice";
+import { hideSidebar } from "@/lib/redux/services/global-action-slice";
 import { RootState } from "@/lib/redux/store";
 import { UserType } from "@/types/type";
 import { useMemo } from "react";
@@ -17,8 +18,9 @@ const FriendCard: React.FC<PropsType> = ({ user }) => {
   const { chatUser } = useSelector((state: RootState) => state.chat);
 
   const onClickHandler = () => {
-    dispatch(setChatUser(user));
     set("chatUser", JSON.stringify(user));
+    dispatch(setChatUser(user));
+    dispatch(hideSidebar());
   };
 
   const isActiveUser = useMemo(

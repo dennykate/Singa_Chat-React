@@ -32,7 +32,7 @@ const MessageReactions: React.FC<PropsType> = ({ isSender, data }) => {
             <ReactionCount data={data} />
           </PopoverTrigger>
           <PopoverContent side="top" className="!w-auto !p-1">
-            <DetailsReaction />
+            <DetailsReaction data={data} />
           </PopoverContent>
         </Popover>
       )}

@@ -45,6 +45,7 @@ const ChatInput = () => {
     onSendMessage(data);
 
     setContent("");
+    setIsStartTyping(false);
   };
 
   const onKeyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {

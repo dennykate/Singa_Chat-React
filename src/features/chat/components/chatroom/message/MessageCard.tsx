@@ -51,8 +51,9 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
       <div className="w-full">
         <div
           className={twMerge(
-            "w-full flex items-end gap-2",
-            isSender ? "justify-end" : "justify-start"
+            "w-full flex items-end gap-2 ",
+            isSender ? "justify-end" : "justify-start",
+            isLastMessage && !isSender && "mb-2"
           )}
         >
           {!isSender && (
@@ -67,7 +68,7 @@ const MessageCard: React.FC<PropsType> = ({ data, isLastMessage }) => {
               <div
                 onDoubleClick={() => setOpenActions(true)}
                 className={twMerge(
-                  "px-4 pt-4 pb-2 shadow-md rounded-md max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] min-w-[100px]",
+                  "px-4 pt-4 pb-2 shadow-md rounded-md max-w-[500px] sm:min-w-[350px] xs:min-w-[250px] min-w-[100px] ",
                   isSender ? "bg-white" : "bg-gray-100"
                 )}
               >

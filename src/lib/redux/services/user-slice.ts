@@ -25,10 +25,10 @@ export const userSlice = createSlice({
     updateLastMessage: (state, { payload }) => {
       state.users = state.users?.map((user) => {
         if (
-          (payload?.sender?._id == user?._id ||
-          payload?.recipient?._id == user?._id) ||
-         ( payload?.sender == user?._id ||
-          payload?.recipient == user?._id)
+          payload?.sender?._id == user?._id ||
+          payload?.recipient?._id == user?._id ||
+          payload?.sender == user?._id ||
+          payload?.recipient == user?._id
         ) {
           console.log("update last message => ", payload);
           user.lastMessage = payload?.content;
@@ -37,9 +37,13 @@ export const userSlice = createSlice({
         return user;
       });
     },
+    setUserSliceDefault: (state) => {
+      state.users = [];
+    },
   },
 });
 
-export const { setUser, setNewUser, updateLastMessage } = userSlice.actions;
+export const { setUser, setNewUser, updateLastMessage, setUserSliceDefault } =
+  userSlice.actions;
 
 export default userSlice.reducer;

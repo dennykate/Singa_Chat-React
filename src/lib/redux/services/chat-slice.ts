@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { UserType, MessageType } from "@/types/type";
+import { UserType, MessageType, IReaction } from "@/types/type";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ChatState {
@@ -53,11 +53,12 @@ export const chatSlice = createSlice({
       state.isTyping = payload;
     },
     addReaction: (state, { payload }) => {
+      console.log("add reaction => ", payload);
       state.messages = state.messages?.map((message: MessageType) => {
         if (message?._id === payload?.messageId) {
           message.reactions = [
             {
-              user: payload.reactionUserId,
+              user: payload.reactionUser,
               type: payload.reactionType,
             },
             ...message.reactions,
@@ -67,6 +68,29 @@ export const chatSlice = createSlice({
 
         return message;
       });
+    },
+    removeReaction: (state, { payload }) => {
+      state.messages = state.messages?.map((message: MessageType) => {
+        if (message._id === payload?.messageId) {
+          message.reactions = message.reactions?.filter(
+            (reaction: IReaction) => {
+              return !(
+                reaction.type === payload?.reactionType &&
+                reaction.user._id === payload.reactionUserId
+              );
+            }
+          );
+
+          message.totalReactions -= 1;
+        }
+
+        return message;
+      });
+    },
+    setChatSliceDefault: (state) => {
+      state.chatUser = undefined;
+      state.isTyping = false;
+      state.messages = [];
     },
   },
 });
@@ -80,6 +104,8 @@ export const {
   readAllMessages,
   setIsTyping,
   addReaction,
+  removeReaction,
+  setChatSliceDefault
 } = chatSlice.actions;
 
 export default chatSlice.reducer;
