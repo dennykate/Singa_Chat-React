@@ -1,11 +1,17 @@
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const now = new Date();
+
+  // Ensure the input date is not in the future
+  if (date > now) {
+    return "Invalid date: date is in the future";
+  }
+
   const diffInMilliseconds = now.getTime() - date.getTime();
   const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
   const diffInMinutes = Math.floor(diffInSeconds / 60);
 
-  if (diffInSeconds < 60 && diffInSeconds > 0) {
+  if (diffInSeconds < 60) {
     return `${diffInSeconds} seconds ago`;
   }
 
