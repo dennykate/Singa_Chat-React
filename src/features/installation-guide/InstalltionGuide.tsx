@@ -2,7 +2,7 @@ import MarkdownRenderer from "@/components/custom/common/MarkdownRenderer";
 
 const InstalltionGuide = () => {
   return (
-    <main className="w-full bg-primary-100 ">
+    <main className="w-full bg-primary-100 px-2">
       <div className="max-w-[800px] mx-auto py-4">
         <div className="p-4 bg-white rounded-md shadow-md">
           <h1 className="text-3xl font-bold mb-4">Installtion Guide</h1>
