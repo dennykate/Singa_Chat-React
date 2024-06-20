@@ -43,10 +43,10 @@ const ChatRoomHeader: React.FC<PropsType> = () => {
           />
 
           <div className="flex flex-col items-start ">
-            <p className="sm:text-base text-sm xs:w-[100px] w-[70px] truncate">
+            <p className="sm:text-base text-sm xs:w-[100px] sm:w-auto w-[70px] truncate sm:overflow-visible sm:whitespace-normal sm:text-ellipsis">
               {chatUser?.username}
             </p>
-            <p className="sm:text-xs text-[10px] text-gray-500 xs:w-[100px] w-[70px] truncate">
+            <p className="sm:text-xs text-[10px] text-gray-500 sm:w-auto xs:w-[100px] w-[70px] truncate sm:overflow-visible sm:whitespace-normal sm:text-ellipsis">
               {isTyping ? "Typing" : chatUser?.email}
             </p>
           </div>

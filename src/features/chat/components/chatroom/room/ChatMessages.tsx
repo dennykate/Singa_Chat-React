@@ -18,8 +18,10 @@ const ChatMessages = () => {
   const [page, setPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isEmpty, setIsEmpty] = useState<boolean>(false);
 
   const fetchMessages = async (page: number) => {
+    setIsEmpty(false);
     setIsLoading(true);
     const res = await getMessages(
       profile?._id as string,
@@ -30,6 +32,11 @@ const ChatMessages = () => {
     if (res?.success) {
       setLastPage(res?.data?.lastPage);
       dispatch(setMessages([...messages, ...res?.data?.messages]));
+
+      if (res?.data?.messages?.length === 0) {
+        setIsLoading(false);
+        setIsEmpty(true);
+      }
     }
 
     setIsLoading(false);
@@ -45,7 +52,7 @@ const ChatMessages = () => {
 
   return (
     <div className="w-full sm:h-[calc(100%-80px)] h-[calc(100%-70px)] overflow-hidden">
-      {messages?.length === 0 && !isLoading && <EmptyMessage />}
+      {isEmpty && <EmptyMessage />}
 
       <InfiniteScrollContainer
         isLoading={isLoading}
