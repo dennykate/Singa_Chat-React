@@ -31,7 +31,7 @@ const FriendCard: React.FC<PropsType> = ({ user }) => {
   return (
     <button
       className={twMerge(
-        "w-full px-4 h-[70px] flex items-center gap-3 transition-all duration-300 ease-in-out",
+        "w-full px-4 min-h-[70px] flex items-center gap-3 transition-all duration-300 ease-in-out",
         isActiveUser
           ? "bg-primary-300 rounded-lg"
           : "hover:bg-primary-100/50 bg-gray-100"

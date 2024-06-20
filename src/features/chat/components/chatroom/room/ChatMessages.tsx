@@ -79,6 +79,40 @@ const ChatMessages = () => {
                 );
               }
             })}
+            {messages?.map((message: MessageType, index: number) => {
+              if (messages.length === index + 1) {
+                return (
+                  <div ref={lastMessageElementRef} key={message?._id + index}>
+                    <MessageCard data={message} isLastMessage={index === 0} />
+                  </div>
+                );
+              } else {
+                return (
+                  <MessageCard
+                    key={message?._id + index}
+                    data={message}
+                    isLastMessage={index === 0}
+                  />
+                );
+              }
+            })}
+            {messages?.map((message: MessageType, index: number) => {
+              if (messages.length === index + 1) {
+                return (
+                  <div ref={lastMessageElementRef} key={message?._id + index}>
+                    <MessageCard data={message} isLastMessage={index === 0} />
+                  </div>
+                );
+              } else {
+                return (
+                  <MessageCard
+                    key={message?._id + index}
+                    data={message}
+                    isLastMessage={index === 0}
+                  />
+                );
+              }
+            })}
 
             <MessageLoading isLoading={isLoading} page={page} />
           </>
