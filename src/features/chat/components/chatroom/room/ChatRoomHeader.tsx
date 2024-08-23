@@ -30,6 +30,18 @@ const ChatRoomHeader: React.FC<PropsType> = () => {
   const dispatch = useDispatch();
   const { chatUser, isTyping } = useSelector((state: RootState) => state.chat);
 
+  const maskGmail = (email: string): string => {
+    if (!email) return "******@gmail.com";
+
+    const [username, domain] = email.split("@");
+    if (username.length > 2) {
+      return `${username[0]}${"*".repeat(username.length - 2)}${
+        username[username.length - 1]
+      }@${domain}`;
+    }
+    return email;
+  };
+
   return (
     <div className="w-full sm:px-4  px-2 md:pt-4 pt-2 flex items-center sm:gap-4 gap-2">
       <SidebarButton onClick={() => dispatch(showSidebar())} />
@@ -47,7 +59,7 @@ const ChatRoomHeader: React.FC<PropsType> = () => {
               {chatUser?.username}
             </p>
             <p className="sm:text-xs text-[10px] text-gray-500 sm:w-auto xs:w-[100px] w-[70px] truncate sm:overflow-visible sm:whitespace-normal sm:text-ellipsis">
-              {isTyping ? "Typing" : chatUser?.email}
+              {isTyping ? "Typing" : maskGmail(chatUser?.email as string)}
             </p>
           </div>
         </div>
